@@ -14,7 +14,7 @@ I implemented a new Compensated RR scheduler with three new features:
 
 2) Improved the Sleep/Wake Mechanism
 
-Changed the existing implementation of sleep() syscall.  The sleep syscall allows processes to sleep for a specified number of ticks.  Unfortunately, the current xv6 implementation of the sleep() syscall forces the sleeping process to wake on every timer tick to check if it has slept for the requested number of timer ticks or not.  This has two drawbacks.  First, it is inefficient to schedule every sleeping process and force it to perform this check.  Second, and more importantly for this project, if the process was scheduled on a timer tick (even just to perform this check), the scheduler might not properly identify that process as sleeping and grant it compensation ticks.
+Changed the existing implementation of sleep() syscall.  The original sleep syscall allowed processes to sleep for a specified number of ticks.  Unfortunately, that xv6 implementation of the sleep() syscall forced the sleeping process to wake on every timer tick to check if it has slept for the requested number of timer ticks or not.  This has two drawbacks.  First, it is inefficient to schedule every sleeping process and forces it to perform this check.  Second, and more importantly for this project, if the process was scheduled on a timer tick (even just to perform this check), the scheduler might not properly identify that process as sleeping and grant it compensation ticks.
 
 Fixed this problem of extra wakeups by changing wakeup1() in proc.c. Added additional condition checking to avoid falsely waking up the sleeping process until it is the right time. Added more fields to struct proc to help wakeup1() decide whether if it is time to wake a process.
 

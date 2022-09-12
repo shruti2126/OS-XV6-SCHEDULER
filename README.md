@@ -1,7 +1,7 @@
 # OS-XV6-SCHEDULER
 Implemented Scheduling using RR mechanism in xv6
 
-Below are the 3 major areas of xv6 worked I worked on for this project: 
+Below are the 3 major areas of xv6 I worked on for this project: 
 
 1) Compensated Round-Robin (CRR) Scheduler Requirements
 The current xv6 scheduler implements a very simple Round Robin (RR) policy.  For example, if there are three processes A, B and C, then the xv6 round-robin scheduler will run the jobs in the order  A B C A B C … , where each letter represents a process.  The xv6 scheduler runs each process for at most one timer tick (10 ms); after each timer tick, the scheduler moves the previous job to the end of the ready queue and dispatches the next job in the list.   The xv6 scheduler does not do anything special when a process sleeps or blocks (and is unable to be scheduled); the blocked job is simply skipped until it is ready and it is again its turn in the RR order. 
